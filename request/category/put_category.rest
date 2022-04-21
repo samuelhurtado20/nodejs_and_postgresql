@@ -1,0 +1,7 @@
+PUT http://localhost:3040/api/category/
+Content-Type: application/json
+
+{
+  "id":6,
+  "name": "New Category"
+}

@@ -1,0 +1,1 @@
+GET http://localhost:3040/api/user/4
