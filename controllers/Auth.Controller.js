@@ -1,6 +1,7 @@
 const AuthService = require('../services/Auth.Service')
 const EnumMessages = require('../types/EnumMessages')
 const { DataValidation } = require('../utils/Validations')
+const logger = require('../utils/LoggerService')
 
 const AuthController = {}
 
@@ -11,8 +12,9 @@ AuthController.Login = async (req, res) => {
 
     let token = await AuthService.Login(req.body)
     if (token.code === 200) return res.header('auth-token', token.message).status(token.code).send({ token: token.message })
-    return res.status(token.code).send({ message: token.message })
+    return res.status(401).send(token)
   } catch (e) {
+    logger.error('AuthController.Login. ERROR: ' + e.message)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }

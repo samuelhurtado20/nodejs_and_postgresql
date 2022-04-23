@@ -1,4 +1,3 @@
-//const { Client } = require('pg')
 const Pool = require('pg').Pool
 
 const CategoryService = {}

@@ -39,6 +39,15 @@ describe('USER /api/user/', () => {
     expect(response.body).toHaveLength(1)
   })
 
+  test('GET   expect 200 status code', async () => {
+    const response = await request(app)
+      .get('/api/user/GetByEmail/' + UserForTest.email)
+      .send()
+    expect(response.statusCode).toBe(200)
+    expect(response.body.length > 0).toBe(true)
+    expect(response.body).toHaveLength(1)
+  })
+
   test('DEL   expect 200 status code', async () => {
     const response = await request(app)
       .delete('/api/user/' + UserForTest.id)
