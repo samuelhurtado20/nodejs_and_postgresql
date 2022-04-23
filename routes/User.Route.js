@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const route = Router()
 const UserController = require('../controllers/User.Controller')
+const VerifyToken = require('../middlewares/VerifyToken')
 
 route.get('/', UserController.List)
 route.get('/:id', UserController.GetById)

@@ -1,1 +1,1 @@
-DELETE  http://localhost:3040/api/category/2
+DELETE  http://localhost:3040/api/category/1

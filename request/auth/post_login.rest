@@ -2,6 +2,6 @@ POST http://localhost:3040/api/auth/
 Content-Type: application/json
 
 {
-  "email": "samuelhurtado@gmail.com",
-  "password": "password202s2"
+  "email": "samuelhurtado20@gmail.com",
+  "password": "password2022"
 }

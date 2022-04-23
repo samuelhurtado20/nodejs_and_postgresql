@@ -21,6 +21,11 @@ const createCategory = Joi.object({
   name: Joi.string().min(3).required(),
 })
 
+const updateCategory = Joi.object({
+  id: Joi.number().required(),
+  name: Joi.string().min(3).required(),
+})
+
 const login = Joi.object({
   email: Joi.string().min(6).required().email(),
   password: Joi.string().min(6).required(),
@@ -39,7 +44,7 @@ class DataValidation {
   }
 
   static updateCategory(request) {
-    return createCategory.validate(request)
+    return updateCategory.validate(request)
   }
 
   static login(request) {

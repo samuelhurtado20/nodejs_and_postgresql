@@ -2,5 +2,5 @@ POST http://localhost:3040/api/category/
 Content-Type: application/json
 
 {
-  "name": ""
+  "name": "test category"
 }
