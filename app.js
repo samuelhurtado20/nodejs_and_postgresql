@@ -3,9 +3,17 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const morgan = require('morgan')
 const app = express()
+const fs = require('fs')
+const path = require('path')
+const moment = require('moment')
+const filename = 'logs/morgan-' + moment(new Date()).format('MM-DD-YYYY') + '.log'
 
 dotenv.config()
-app.use(morgan('dev'))
+
+// Setup the logger with morgan
+const accessLogStream = fs.createWriteStream(path.join(__dirname, filename), { flags: 'a' })
+app.use(morgan('combined', { stream: accessLogStream }))
+//app.use(morgan('dev'))
 
 const corsOptions = {
   origin: 'http://localhost:' + process.env.PORT,

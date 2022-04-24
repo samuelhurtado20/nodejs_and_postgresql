@@ -1,4 +1,3 @@
-const { isNumber } = require('@hapi/joi/lib/common')
 const UserService = require('../services/User.Service')
 const { Utils } = require('../utils/Utils')
 const { DataValidation } = require('../utils/Validations')
@@ -15,7 +14,7 @@ UserController.GetById = async (req, res) => {
     if (!user.length > 0) return res.status(404).send(EnumMessages.UserNotFound)
     res.status(200).send(user)
   } catch (e) {
-    logger.error('UserController.GetById. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -31,7 +30,7 @@ UserController.Create = async (req, res) => {
     let userCreated = await UserService.Create(req.body)
     res.status(201).send(userCreated)
   } catch (e) {
-    logger.error('UserController.Create. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -44,7 +43,7 @@ UserController.Update = async (req, res) => {
     let userUpdated = await UserService.Update(req.body)
     res.status(200).send(userUpdated)
   } catch (e) {
-    logger.error('UserController.Update. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -56,7 +55,7 @@ UserController.Delete = async (req, res) => {
     let user = await UserService.Delete(id)
     res.status(200).send(user)
   } catch (e) {
-    logger.error('UserController.Delete. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -66,7 +65,7 @@ UserController.List = async (req, res) => {
     let users = await UserService.List()
     res.status(200).send(users)
   } catch (e) {
-    logger.error('UserController.List. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -77,7 +76,7 @@ UserController.GetByEmail = async (req, res) => {
     let users = await UserService.GetByEmail(email)
     res.status(200).send(users)
   } catch (e) {
-    logger.error('UserController.GetByEmail. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }

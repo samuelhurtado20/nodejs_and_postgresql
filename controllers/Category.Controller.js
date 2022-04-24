@@ -13,6 +13,7 @@ CategoryController.GetById = async (req, res) => {
     if (!category.length > 0) return res.status(404).send(EnumMessages.CategoryNotFound)
     res.status(200).send(category)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -26,6 +27,7 @@ CategoryController.Create = async (req, res) => {
     const category = await CategoryService.Create(name)
     res.status(201).send(category)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -38,6 +40,7 @@ CategoryController.Update = async (req, res) => {
     let categoryUpdated = await CategoryService.Update(req.body)
     res.status(200).send(categoryUpdated)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -49,6 +52,7 @@ CategoryController.Delete = async (req, res) => {
     let user = await CategoryService.Delete(id)
     res.status(200).send(user)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -58,6 +62,7 @@ CategoryController.List = async (req, res) => {
     let users = await CategoryService.List()
     res.status(200).send(users)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }

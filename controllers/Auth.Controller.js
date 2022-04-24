@@ -14,7 +14,7 @@ AuthController.Login = async (req, res) => {
     if (token.code === 200) return res.header('auth-token', token.message).status(token.code).send({ token: token.message })
     return res.status(401).send(token)
   } catch (e) {
-    logger.error('AuthController.Login. ERROR: ' + e.message)
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
@@ -28,6 +28,7 @@ AuthController.ChangePassword = async (req, res) => {
     if (change.code === EnumMessages.Success.code) return res.status(200).send(change)
     return res.status(401).send(change)
   } catch (e) {
+    logger.error(`${e.status || 500} - ${e.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
     res.status(500).send(EnumMessages.UnexpectedError)
   }
 }
