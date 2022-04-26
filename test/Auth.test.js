@@ -9,6 +9,7 @@ describe('AUTH /api/auth/', () => {
   test('POST  expect 200 status code', async () => {
     const response = await request(app).post('/api/auth/').send(LoginForTest)
     expect(response.statusCode).toBe(200)
+    expect(response.headers['content-type']).toEqual(expect.stringContaining('json'))
     expect(response.body).toHaveProperty('token')
     expect(response.body.token.length > 30).toBe(true)
   })

@@ -8,10 +8,9 @@ const CategoryForTest = {
 describe('CATEGORY /api/category/', () => {
   test('POST  expect 201 status code', async () => {
     const response = await request(app).post('/api/category/').send(CategoryForTest)
-    // expect(response.body).toHaveLength(1)
-    // expect(response.body[0].name).toBe(CategoryForTest.name)
+    expect(response.body).toHaveLength(1)
+    expect(response.body[0].name).toBe(CategoryForTest.name)
     expect(response.statusCode).toBe(201)
-    //console.log(response.body[0].id)
     CategoryForTest.id = response.body[0].id
   })
 
